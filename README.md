@@ -8,5 +8,6 @@ git clone https://github.com/Argo160/CF-SC.git
 
 2-Run 
 ```shell
-bash CF-SC/cfss.sh
+cd CF-SC
+bash cfss.sh
 ```
