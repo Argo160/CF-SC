@@ -34,22 +34,23 @@ realbandwidth=$[$max/128]
 endtime=$(date +%s)
 echo "Get details from the server"
 unset temp
-if [ "$ips" == "ipv4" ]
-then
-	if [ $tls == 1 ]
-	then
-		temp=($(curl --resolve $domain:443:$anycast --retry 1 -s https://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
-	else
-		temp=($(curl -x $anycast:80 --retry 1 -s http://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
-	fi
-else
-	if [ $tls == 1 ]
-	then
-		temp=($(curl --resolve $domain:443:$anycast --retry 1 -s https://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
-	else
-		temp=($(curl -x [$anycast]:80 --retry 1 -s http://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
-	fi
-fi
+temp=($(curl --resolve $domain:443:$anycast --retry 1 -s https://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
+#if [ "$ips" == "ipv4" ]
+#then
+#	if [ $tls == 1 ]
+#	then
+#		temp=($(curl --resolve $domain:443:$anycast --retry 1 -s https://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
+#	else
+#		temp=($(curl -x $anycast:80 --retry 1 -s http://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
+#	fi
+#else
+#	if [ $tls == 1 ]
+#	then
+#		temp=($(curl --resolve $domain:443:$anycast --retry 1 -s https://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
+#	else
+#		temp=($(curl -x [$anycast]:80 --retry 1 -s http://$domain/cdn-cgi/trace --connect-timeout 2 --max-time 3))
+#	fi
+#fi
 if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | grep colo= | wc -l) == 0 ]
 then
 	publicip=Timeout
@@ -61,12 +62,12 @@ fi
 clear
 echo "Preferred IP $anycast"
 echo "Your Public IP $publicip"
-if [ $tls == 1 ]
-then
-	echo "Support Ports 443 2053 2083 2087 2096 8443"
-else
-	echo "Support Ports 80 8080 8880 2052 2082 2086 2095"
-fi
+#if [ $tls == 1 ]
+#then
+#	echo "Support Ports 443 2053 2083 2087 2096 8443"
+#else
+#	echo "Support Ports 80 8080 8880 2052 2082 2086 2095"
+#fi
 echo "Set Bandwidth (BW) $bandwidth Mbps"
 echo "Real BW $realbandwidth Mbps"
 echo "Best Speed $max kB/s"
