@@ -9,6 +9,7 @@ if [ -z "$ip" ]
 then
 	echo "IP not entered"
 fi
+speed_download=$(curl --resolve $domain:$port:$ip https://$domain:$port/$file -o /dev/null --connect-timeout 5 --max-time 15 -w %{speed_download} | awk -F\. '{printf ("%d\n",$1/1024)}')
 
 function speedtesthttps(){
 rm -rf log.txt speed.txt
