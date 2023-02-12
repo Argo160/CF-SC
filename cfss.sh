@@ -1,30 +1,32 @@
 # better-cloudflare-ip
 
 function bettercloudflareip(){
-read -p "Please Set Bandwidth in Mbps(Default 1MB ):" bandwidth
-read -p "Set Ping Time(Min 10ms,Max 50ms):" tasknum
-if [ -z "$bandwidth" ]
-then
-	bandwidth=1
-fi
-if [ $bandwidth -eq 0 ]
-then
-	bandwidth=1
-fi
-if [ -z "$tasknum" ]
-then
-	tasknum=10
-fi
-if [ $tasknum -eq 0 ]
-then
-	echo "Cant Choice 0"
-	tasknum=10
-fi
-if [ $tasknum -gt 50 ]
-then
-	echo "If the maximum process limit is exceeded, the maximum value is automatically set"
-	tasknum=50
-fi
+#read -p "Please Set Bandwidth in Mbps(Default 1MB ):" bandwidth
+#read -p "Set Ping Time(Min 10ms,Max 50ms):" tasknum
+#if [ -z "$bandwidth" ]
+#then
+#	bandwidth=1
+#fi
+#if [ $bandwidth -eq 0 ]
+#then
+#	bandwidth=1
+#fi
+#if [ -z "$tasknum" ]
+#then
+	#tasknum=10
+#fi
+#if [ $tasknum -eq 0 ]
+#then
+#	echo "Cant Choice 0"
+#	tasknum=10
+#fi
+#if [ $tasknum -gt 50 ]
+#then
+#	echo "If the maximum process limit is exceeded, the maximum value is automatically set"
+#	tasknum=50
+#fi
+bandwidth=1
+tasknum=10
 speed=$[$bandwidth*128*1024]
 starttime=$(date +%s)
 cloudflaretest
@@ -419,80 +421,85 @@ file=$(echo $url | cut -f 2- -d'/')
 clear
 while true
 do
-	echo "1. IPV4(TLS)"
-	echo "2. IPV4"
-	echo "3. IPV6(TLS)"
-	echo "4. IPV6"
-	echo "5. single IP speed(TLS)"
-	echo "6. single IP speed test"
-	echo "7. Clear Cache"
-	echo "8. Update data"
-	echo -e "0. Exit\n"
-	read -p "Your Choice(Default 0): " menu
-	if [ -z "$menu" ]
-	then
-		menu=0
-	fi
-	if [ $menu == 0 ]
-	then
-		clear
-		echo "Successful exit"
-		break
-	fi
-	if [ $menu == 1 ]
-	then
-		ips=ipv4
-		filename=ips-v4.txt
-		tls=1
-		bettercloudflareip
-		break
-	fi
-	if [ $menu == 2 ]
-	then
-		ips=ipv4
-		filename=ips-v4.txt
-		tls=0
-		bettercloudflareip
-		break
-	fi
-	if [ $menu == 3 ]
-	then
-		ips=ipv6
-		filename=ips-v6.txt
-		tls=1
-		bettercloudflareip
-		break
-	fi
-	if [ $menu == 4 ]
-	then
-		ips=ipv6
-		filename=ips-v6.txt
-		tls=0
-		bettercloudflareip
-		break
-	fi
-	if [ $menu == 5 ]
-	then
-		singlehttps
-		clear
-		echo "$ip Average speed $speed_download kB/s"
-	fi
-	if [ $menu == 6 ]
-	then
-		singlehttp
-		clear
-		echo "$ip Average speed $speed_download kB/s"
-	fi
-	if [ $menu == 7 ]
-	then
-		rm -rf rtt rtt.txt log.txt speed.txt
-		clear
-		echo "Cache clear Successfully"
-	fi
-	if [ $menu == 8 ]
-	then
-		rm -rf colo.txt url.txt ips-v4.txt ips-v6.txt
-		datacheck
-		clear
-	fi
+#	echo "1. IPV4(TLS)"
+#	echo "2. IPV4"
+#	echo "3. IPV6(TLS)"
+#	echo "4. IPV6"
+#	echo "5. single IP speed(TLS)"
+#	echo "6. single IP speed test"
+#	echo "7. Clear Cache"
+#	echo "8. Update data"
+#	echo -e "0. Exit\n"
+#	read -p "Your Choice(Default 0): " menu
+#	if [ -z "$menu" ]
+#	then
+#		menu=0
+#	fi
+#	if [ $menu == 0 ]
+#	then
+#		clear
+#		echo "Successful exit"
+#		break
+#	fi
+#	if [ $menu == 1 ]
+#	then
+#		ips=ipv4
+#		filename=ips-v4.txt
+#		tls=1
+#		bettercloudflareip
+#		break
+#	fi
+#	if [ $menu == 2 ]
+#	then
+#		ips=ipv4
+#		filename=ips-v4.txt
+#		tls=0
+#		bettercloudflareip
+#		break
+#	fi
+#	if [ $menu == 3 ]
+#	then
+#		ips=ipv6
+#		filename=ips-v6.txt
+#		tls=1
+#		bettercloudflareip
+#		break
+#	fi
+#	if [ $menu == 4 ]
+#	then
+#		ips=ipv6
+#		filename=ips-v6.txt
+#		tls=0
+#		bettercloudflareip
+#		break
+#	fi
+#	if [ $menu == 5 ]
+#	then
+#		singlehttps
+#		clear
+#		echo "$ip Average speed $speed_download kB/s"
+#	fi
+#	if [ $menu == 6 ]
+#	then
+#		singlehttp
+#		clear
+#		echo "$ip Average speed $speed_download kB/s"
+#	fi
+#	if [ $menu == 7 ]
+#	then
+#		rm -rf rtt rtt.txt log.txt speed.txt
+#		clear
+#		echo "Cache clear Successfully"
+#	fi
+#	if [ $menu == 8 ]
+#	then
+#		rm -rf colo.txt url.txt ips-v4.txt ips-v6.txt
+#		datacheck
+#		clear
+#	fi
+	ips=ipv4
+	filename=ips-v4.txt
+	tls=1
+	bettercloudflareip
+	break
 done
