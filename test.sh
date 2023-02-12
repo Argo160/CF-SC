@@ -452,16 +452,16 @@ file=$(echo $url | cut -f 2- -d'/')
 clear
 while true
 do
-	echo "1. IPV4优选(TLS)"
-	echo "2. IPV4优选"
-	echo "3. IPV6优选(TLS)"
-	echo "4. IPV6优选"
-	echo "5. 单IP测速(TLS)"
-	echo "6. 单IP测速"
-	echo "7. 清空缓存"
-	echo "8. 更新数据"
-	echo -e "0. 退出\n"
-	read -p "请选择菜单(默认0): " menu
+	echo "1. IPV4(TLS)"
+	echo "2. IPV4"
+	echo "3. IPV6(TLS)"
+	echo "4. IPV6"
+	echo "5. single IP speed(TLS)"
+	echo "6. single IP speed test"
+	echo "7. Clear Cache"
+	echo "8. Update data"
+	echo -e "0. Exit\n"
+	read -p "Your Choice(Default 0): " menu
 	if [ -z "$menu" ]
 	then
 		menu=0
@@ -469,7 +469,7 @@ do
 	if [ $menu == 0 ]
 	then
 		clear
-		echo "退出成功"
+		echo "Successful exit"
 		break
 	fi
 	if [ $menu == 1 ]
@@ -508,19 +508,19 @@ do
 	then
 		singlehttps
 		clear
-		echo "$ip 平均速度 $speed_download kB/s"
+		echo "$ip average speed $speed_download kB/s"
 	fi
 	if [ $menu == 6 ]
 	then
 		singlehttp
 		clear
-		echo "$ip 平均速度 $speed_download kB/s"
+		echo "$ip average speed $speed_download kB/s"
 	fi
 	if [ $menu == 7 ]
 	then
 		rm -rf rtt rtt.txt log.txt speed.txt
 		clear
-		echo "缓存已经清空"
+		echo "cache has been cleared"
 	fi
 	if [ $menu == 8 ]
 	then
