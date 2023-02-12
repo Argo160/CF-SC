@@ -6,8 +6,7 @@ CloudFlare IP Scanner for better life
 git clone https://github.com/Argo160/CF-SC.git
 ```
 
-2-Run 
+2-Run the below command inside the cloned directory
 ```shell
-cd CF-SC
 bash cfss.sh
 ```
